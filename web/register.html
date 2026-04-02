@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Cedar - Register]</title>
+  <link rel="icon" type="image/x-icon" href="../resources/images/favicon.ico">
+  <link href="../resources/styles.css" rel="stylesheet" type="text/css" />
+  <style>
+    .auth-card {
+      background-color: #f5e6d0;
+      border: 3px solid burlywood;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 420px;
+      margin: 80px auto;
+    }
+    .auth-card h2 { margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .form-group input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 16px;
+      font-family: inherit;
+      border: 2px solid burlywood;
+      border-radius: 7px;
+      background-color: antiquewhite;
+      box-sizing: border-box;
+    }
+    .form-group input:focus { outline: none; border-color: tan; }
+    .form-hint { font-size: 13px; color: #666; margin-top: 4px; }
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      font-size: 17px;
+      font-family: inherit;
+      font-weight: 700;
+      background-color: rgb(215, 177, 128);
+      border: 2px solid rgb(197, 159, 110);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 6px;
+    }
+    .btn-primary:hover { background-color: rgb(230, 192, 143); }
+    .error-msg { color: #8b2020; font-size: 15px; margin-top: 10px; text-align: center; display: none; }
+    .switch-link { text-align: center; margin-top: 20px; font-size: 15px; }
+    .switch-link a { color: darkslategray; font-weight: 600; }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+      <a href="home.html" class="nav-logo">
+        <img
+          class="align-middle"
+          src="../resources/images/favicon.ico"
+          width="14px"
+        />[C]</a>
+      <ul class="nav-content">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">☰</label>
+        <div class="menu">
+          <li class="nav-link"><a href="forums/forum1.html">General</a></li>
+          <li class="nav-link"><a href="forums/forum2.html">Technology</a></li>
+          <li class="nav-link"><a href="forums/forum3.html">Creative</a></li>
+          <li class="nav-link"><a href="about.html">About</a></li>
+          <li class="nav-link" id="nav-auth-link"><a href="register.html" style="color:darkslategray">Register</a></li>
+        </div>
+      </ul>
+    </nav>
+
+  <div class="auth-card">
+    <h2>Create Account</h2>
+    <form id="register-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required />
+        <p class="form-hint">3–20 characters. Letters, numbers, and underscores only.</p>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" required />
+        <p class="form-hint">At least 6 characters.</p>
+      </div>
+      <div class="form-group">
+        <label for="confirm">Confirm Password</label>
+        <input type="password" id="confirm" name="confirm" autocomplete="new-password" required />
+      </div>
+      <button type="submit" class="btn-primary">Create Account</button>
+      <p class="error-msg" id="error-msg"></p>
+    </form>
+    <div class="switch-link">
+      Already have an account? <a href="login.html">Log in</a>
+    </div>
+  </div>
+
+  <script>
+    (async () => {
+      const res = await fetch("/api/session");
+      const data = await res.json();
+      if (data.loggedIn) window.location.href = "home.html";
+    })();
+
+    document.getElementById("register-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      const errorEl = document.getElementById("error-msg");
+      errorEl.style.display = "none";
+
+      if (password !== confirm) {
+        errorEl.textContent = "Passwords do not match";
+        errorEl.style.display = "block";
+        return;
+      }
+
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.location.href = "home.html";
+      } else {
+        errorEl.textContent = data.error || "Registration failed";
+        errorEl.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

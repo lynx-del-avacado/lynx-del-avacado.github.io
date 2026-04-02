@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Cedar - Technology]</title>
+  <link rel="icon" type="image/x-icon" href="../../resources/images/favicon.ico">
+  <link href="../../resources/styles.css" rel="stylesheet" type="text/css" />
+  <link href="../../resources/forum.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <nav class="navbar">
+      <a href="../../home.html" class="nav-logo">
+        <img
+          class="align-middle"
+          src="../resources/images/favicon.ico"
+          width="14px"
+        />[C]</a>
+      <ul class="nav-content">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">☰</label>
+        <div class="menu">
+          <li class="nav-dropdown">
+            <button class="dropbtn">Pages 
+          <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-content">
+              <li><a href="../pages/page1.html">page 1</a></li>
+              <li><a href="../pages/page2.html">page 2</a></li>
+              <li><a href="../pages/page3.html">page 3</a></li>
+            </ul>
+          </li>
+          <li class="nav-link"><a href="../#">Link</a></li>
+            <li class="nav-dropdown">
+              <button class="dropbtn">Forums 
+            <i class="fa fa-caret-down"></i>
+            <ul class="dropdown-content">
+              <li><a href="forum1.html">General</a></li>
+              <li><a href="forum2.html">Technology</a></li>
+              <li><a href="forum3.html">Creative</a></li>
+            </ul>
+          </li>
+          <li class="nav-link"><a href="../about.html">About</a></li>
+          <li class="nav-link" id="nav-auth-link"></li>
+        </div>
+      </ul>
+    </nav>
+
+  <div class="forum-container">
+    <div class="forum-header">
+      <h1>Technology</h1>
+      <p>Discuss software, hardware, gadgets, and the digital world.</p>
+    </div>
+
+    <div id="new-post-section" class="new-post-section" style="display:none">
+      <h3>New Post</h3>
+      <form id="post-form" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" maxlength="120" placeholder="Post title..." required />
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="5" placeholder="Write your post..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Image (optional)</label>
+          <input type="file" id="image" name="image" accept="image/*" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-post">Post</button>
+          <button type="button" class="btn-cancel" id="cancel-post">Cancel</button>
+        </div>
+        <p class="error-msg" id="post-error"></p>
+      </form>
+    </div>
+
+    <div class="forum-toolbar">
+      <span id="post-count" class="post-count"></span>
+      <button id="new-post-btn" class="btn-new-post" style="display:none">+ New Post</button>
+      <a href="../login.html" id="login-prompt" class="login-prompt" style="display:none">Log in to post</a>
+    </div>
+
+    <div id="posts-list" class="posts-list">
+      <p class="loading-msg">Loading posts...</p>
+    </div>
+  </div>
+
+  <script>
+    const FORUM_ID = 2;
+  </script>
+  <script src="../../resources/forum.js"></script>
+  <script src="../../resources/script.js"></script>
+  <script src="../../resources/style.js"></script>
+</body>
+</html>

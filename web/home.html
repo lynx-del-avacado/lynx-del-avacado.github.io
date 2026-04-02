@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Cedar - Home]</title>
+  <link rel="icon" type="image/x-icon" href="../resources/images/favicon.ico">
+  <link href="../resources/styles.css" rel="stylesheet" type="text/css" />
+  <style>
+    .forum-cards {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .forum-card {
+      background-color: #f5e6d0;
+      border: 2px solid burlywood;
+      border-radius: 10px;
+      padding: 24px 28px;
+      flex: 1 1 200px;
+      max-width: 280px;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.2s;
+    }
+    .forum-card:hover { background-color: burlywood; border-color: tan; }
+    .forum-card h3 { margin: 0 0 8px; font-size: 22px; }
+    .forum-card p { margin: 0; font-size: 15px; color: #555; }
+    .forum-card:hover p { color: #333; }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+      <a href="home.html" class="nav-logo">
+        <img
+          class="align-middle"
+          src="../resources/images/favicon.ico"
+          width="14px"
+        />[C]</a>
+      <ul class="nav-content">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">☰</label>
+        <div class="menu">
+          <li class="nav-dropdown">
+            <button class="dropbtn">Pages 
+          <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-content">
+              <li><a href="pages/page1.html">page 1</a></li>
+              <li><a href="pages/page2.html">page 2</a></li>
+              <li><a href="pages/page3.html">page 3</a></li>
+            </ul>
+          </li>
+          <li class="nav-link"><a href="#">Link</a></li>
+            <li class="nav-dropdown">
+              <button class="dropbtn">Forums 
+            <i class="fa fa-caret-down"></i>
+            <ul class="dropdown-content">
+              <li><a href="forums/forum1.html">General</a></li>
+              <li><a href="forums/forum2.html">Technology</a></li>
+              <li><a href="forums/forum3.html">Creative</a></li>
+            </ul>
+          </li>
+          <li class="nav-link"><a href="about.html">About</a></li>
+          <li class="nav-link" id="nav-auth-link"></li>
+        </div>
+      </ul>
+    </nav>
+
+
+  <section class="container">
+    <div class="center">
+      <h1>Welcome to Cedar</h1>
+      <img src="../resources/images/purple-tree.png" width="35%" />
+      <p>Above: Clearly, not a cedar.</p>
+    </div>
+
+    <div>
+      <h2 class="center">Forums</h2>
+      <div class="forum-cards">
+        <a href="forums/forum1.html" class="forum-card">
+          <h3>General Discussion</h3>
+          <p>Talk about anything and everything.</p>
+        </a>
+        <a href="forums/forum2.html" class="forum-card">
+          <h3>Technology</h3>
+          <p>Software, hardware, gadgets, and the digital world.</p>
+        </a>
+        <a href="forums/forum3.html" class="forum-card">
+          <h3>Creative Corner</h3>
+          <p>Share art, writing, music, and creative works.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (async () => {
+      const res = await fetch("/api/session");
+      const session = await res.json();
+      const authLink = document.getElementById("nav-auth-link");
+      if (session.loggedIn) {
+        authLink.innerHTML = `<span style="font-size:15px;font-weight:600;color:#666">${session.username}</span>
+          &nbsp;<a href="#" id="logout-nav" style="font-size:14px">Logout</a>`;
+        document.getElementById("logout-nav").addEventListener("click", async (e) => {
+          e.preventDefault();
+          await fetch("/api/logout", { method: "POST" });
+          window.location.reload();
+        });
+      } else {
+        authLink.innerHTML = '<a href="login.html">Login</a>';
+      }
+    })();
+  </script>
+  <script src="../resources/script.js"></script>
+  <script src="../resources/style.js"></script>
+</body>
+</html>

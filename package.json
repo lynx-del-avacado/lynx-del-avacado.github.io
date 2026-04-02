@@ -1,0 +1,27 @@
+{
+  "name": "Cedar",
+  "version": "0.1",
+  "description": "A website",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "js"
+  ],
+  "author": "Unkown",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.8.0",
+    "connect-sqlite3": "^0.9.16",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.1.1"
+  }
+}

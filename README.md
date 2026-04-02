@@ -1,1 +1,2 @@
-# lynx-del-avacado.github.io
+# Cedar
+Basic Website

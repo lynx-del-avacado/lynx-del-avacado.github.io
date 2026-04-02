@@ -1,0 +1,307 @@
+html,
+body {
+  font-family: "Courier New", Courier, monospace;
+  padding: 8px;
+  color: rgb(30, 35, 30);
+  background-color: antiquewhite;
+}
+
+.large {
+  font-size: 40px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 29px;
+  color: rgb(25, 35, 30);
+}
+
+h3 {
+  font-size: 26px;
+  color: rgb(25, 35, 30);
+}
+
+h4 {
+  font-size: 23px;
+  color: rgb(25, 35, 30);
+}
+
+h5 {
+  font-size: 21px;
+  color: rgb(25, 35, 30);
+}
+
+h6 {
+  font-size: 18px;
+  color: rgb(25, 35, 30);
+}
+
+p {
+  font-size: 20px;
+  color: rgb(50, 55, 50);
+}
+
+.center {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin: 64px auto;
+  max-width: 1000px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: burlywood;
+  border: 6px solid tan;
+  /*rgb(230, 192, 143)*/
+  border-radius: 10px;
+}
+  border-radius: 10px;
+}
+
+.nav-alert .nav-alert-delete {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+}
+
+.nav-alert .nav-alert-delete::after {
+  content: "✕";
+}
+
+.navbar li {
+  list-style-type: none;
+}
+
+.navbar .nav-logo {
+  font-size: 16px;
+}
+
+.navbar .nav-logo img.align-middle {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.navbar .nav-logo:hover {
+  color: darkslategray;
+}
+
+/*.nav-link {
+  padding: 6px 0px;
+}*/
+
+.navbar a,
+.nav-content a {
+  color: rgb(110, 110, 110);
+  font-size: 17px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.navbar a:hover,
+.nav-content a:hover {
+  color: antiquewhite;
+}
+
+.navbar a.btn {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.navbar a.btn:hover {
+  color: yellow;
+}
+
+.menu {
+  display: flex;
+  font-size: 15px;
+  gap: 1.5em;
+}
+
+.menu li {
+  padding: 5px 14px;
+}
+
+.nav-dropdown {
+  position: relative;
+  background-color: #ffe4b5;
+  border-radius: 8px;
+  transition: 0.5s;
+  margin: 0;
+}
+
+.nav-dropdown a:hover {
+  color: darkslategray;
+}
+
+.nav-dropdown .dropdown-link::after, .dropbtn::after {
+  content: "↓";
+  margin-left: 5px;
+  transition-delay: 0.9s;
+  transition: 0.3s;
+}
+
+.nav-dropdown:hover {
+  background-color: wheat;
+  color: #3c445c;
+  border-radius: 8px;
+}
+
+.dropdown-content {
+  z-index: 9999;
+  font-size: 17px;
+  background-color: rgb(217, 179, 130);
+  border: 2px solid rgb(200, 162, 113);
+  padding: 1em 0;
+  position: absolute;
+  display: none;
+  top: 40px;
+  right: -15%;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content li + li {
+  margin-top: 7px;
+}
+
+.dropdown-content li {
+  text-align: center;
+  width: 8em;
+  padding: 7px;
+  transition: 0.3s;
+}
+
+.dropbtn {
+  font-size: 17px;  
+  border: none;
+  outline: none;
+  color: rgb(110, 110, 110);
+  padding: 6px 8px;
+  background-color: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  transition: 0.3s;
+  margin: 0;
+}
+
+.dropbtn:hover {
+  color: darkslategray;
+}
+
+.dropdown-content li:hover {
+  background-color: wheat;
+}
+
+.nav-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbar input[type="checkbox"] {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border: 1.5px yellow;
+  border-radius: 8px;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.hamburger:hover {
+  background-color: #f2e088;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .container {
+    max-width: 80%;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    background-color: antiquewhite;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  .menu li:hover {
+    display: inline-block;
+    transition: 0.3s ease;
+  }
+
+  .menu li + li {
+    margin-top: 12px;
+  }
+
+  input[type="checkbox"]:checked ~ .menu {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+    color: darkslategray;
+  }
+
+  .dropdown {
+    top: 30px;
+  }
+}
+
+.footer {
+  background-color: burlywood;
+  color: darkslategray;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+}
+
+.source {
+  font-size: 11px;
+  text-align: right;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+img {
+  border-radius: 7px;
+}
+
+a:active {
+  color: red;
+}
+
+button {
+  background-color: rgb(215, 177, 128);
+  border: 2px solid rgb(197, 159, 110);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: rgb(230, 192, 143);
+  cursor: pointer
+}
